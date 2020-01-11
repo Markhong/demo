@@ -1,0 +1,10 @@
+.content {
+  height: 364px;
+  width: 100%;
+  overflow: hidden;
+}
+.contentInner {
+  width: 1180px;
+  height: 300px;
+  margin: 32px auto;
+}
