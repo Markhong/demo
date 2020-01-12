@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import classnames from "classnames";
+// import classnames from "classnames";
 import style from "./scrollContent.module.css";
 
 const ScrollContent = props => {
@@ -10,21 +10,18 @@ const ScrollContent = props => {
     return div.childNodes; 
   }
 
+  
   const contentList = useRef(null);
+  
   let scrollTime;
-  const scroll = () => {
-    const contentListDom = contentList.current;
-    const nodes = createElementFromHTML(contentListDom.innerHTML.replace(/data-scrollindex="1"/g, 'data-scrollindex="2"'));
-    Array.from(nodes).forEach((e) => {
-      contentListDom.appendChild(e);
-    })
-    
-    let scrollIndex = 1;
+  let scrollIndex = 1;
+
+  const startToScroll = (contentListDom) => {
     clearInterval(scrollTime);
 		scrollTime = setInterval(function() {
 			var top =  parseInt(contentListDom.style['top'].split('px')[0]);
 			contentListDom.style.top = `${top - 1}px`;
-			if ((top-1) && ((top-1) / 450)%1 === 0) {
+			if ((top-1) && ((top-1) / (props.list.length * 50 - 50))%1 === 0) {
           Array.from(document.querySelectorAll(`[data-scrollindex='${scrollIndex}']`)).forEach((e) => {
             e.remove();
           })
@@ -40,6 +37,16 @@ const ScrollContent = props => {
 		}, 40);
   }
 
+  const scroll = () => {
+    const contentListDom = contentList.current;
+    const nodes = createElementFromHTML(contentListDom.innerHTML.replace(/data-scrollindex="1"/g, 'data-scrollindex="2"'));
+    Array.from(nodes).forEach((e) => {
+      contentListDom.appendChild(e);
+    })
+    
+    startToScroll(contentListDom)
+  }
+
   useEffect(() => {
     scroll();
     const contentListDom = contentList.current;
@@ -47,7 +54,7 @@ const ScrollContent = props => {
       clearInterval(scrollTime);
     });
     contentListDom.addEventListener('mouseout', (e) => {
-      scroll();
+      startToScroll(contentListDom);
     });
   }, []);
 
