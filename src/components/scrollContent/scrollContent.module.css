@@ -5,6 +5,8 @@
   float: left;
   overflow: hidden;
   position: relative;
+  width: 850px;
+    height: 300px;
 }
 .more {
   height: 49px;
@@ -16,6 +18,13 @@
   color: #000000;
   position: relative;
   z-index: 2;
+}
+.more a {
+  float: right;
+    font-size: 14px;
+    color: rgba(31,56,88,0.60);
+    cursor: pointer;
+    text-decoration: none;
 }
 .moreLink {
   float: right;

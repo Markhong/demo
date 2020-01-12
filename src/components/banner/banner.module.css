@@ -1,3 +1,9 @@
+.banner {
+  width: 100%;
+  position: relative;
+  height: 478px;
+    overflow: hidden;
+}
 .bannerImage {
   vertical-align: middle;
   width: 100%;
@@ -86,6 +92,7 @@
     border: none;
     position: relative;
     z-index: 2;
+    cursor: pointer;
 }
 .hot-text {
   padding: 10px 0;

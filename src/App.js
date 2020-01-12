@@ -4,6 +4,7 @@ import './App.module.css';
 import Header from './components/header/header';
 import Banner from './components/banner/banner';
 import NewPosition from './components/newPosition/newPosition';
+import Footer from './components/footer/footer';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <Banner />
       <NewPosition />
+      <Footer />
     </div>
   );
 }
